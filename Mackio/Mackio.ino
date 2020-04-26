@@ -71,10 +71,21 @@ void setup() {
     for (int i = 0; i < WARMUP_COUNT; i++) {
         readSensor(false);
         delay(WARMUP_DELAY);
+        splash(i, WARMUP_COUNT);
     }
 
     // Initialize refresh counter
     previousMillis = millis();
+}
+
+void splash(int progress, int max) {
+    u8g2.firstPage();
+    do {
+        u8g2.setFont(u8g2_font_fur11_tn);
+        u8g2.drawStr(0, 24, "Mackio");
+        u8g2.drawStr(0, 36, "variometr");
+        u8g2.drawBox(4, 28, u8g2.getWidth() - 4, 32);
+    } while (u8g2.nextPage());    
 }
 
 void loop()
